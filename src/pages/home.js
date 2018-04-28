@@ -1,9 +1,27 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, ScrollView, Text } from 'react-native';
+import axios from 'axios';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-
+import Card from '../component/Card';
 
 class Home extends Component {
+  constructor() {
+    super();
+    this.state = {
+        data: [],
+    };
+    }
+
+componentWillMount() {
+    axios.get('https://ders1-b7d60.firebaseio.com/.json')
+    .then(response => this.setState({ data: response.data }));
+}
+
+renderData() {
+  return this.state.data.map((items, Id) =>
+     <Card key={Id} data={items} />
+  );
+}
 
     render() {
         return (
@@ -19,6 +37,9 @@ class Home extends Component {
                         longitudeDelta: 0.0121,
                     }}
               />
+              <ScrollView >
+                {this.renderData()}
+              </ScrollView>
 
           </View>
         );
