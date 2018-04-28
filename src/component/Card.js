@@ -1,10 +1,16 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+
 
 const Card = (props) => {
+    const sendData = () => {
+        Actions.Menu({ data: props.data });
+      };
     return (
         <View style={styles.containerStyle} >
             <TouchableOpacity
+                onPress={() => sendData()}
                 style={styles.subContainerStyle}
             >
                 <View>
