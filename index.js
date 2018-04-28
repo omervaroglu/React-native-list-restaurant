@@ -1,4 +1,15 @@
-import { AppRegistry } from 'react-native';
-import App from './App';
+import React, { Component } from 'react';
+import { AppRegistry, View } from 'react-native';
+import Router from './src/router';
 
-AppRegistry.registerComponent('App', () => App);
+class index extends Component {
+    render() {
+        return (
+          <View style={{ flex: 1 }}>
+              <Router />
+          </View>
+        );
+    }
+}
+
+AppRegistry.registerComponent('project', () => index);
